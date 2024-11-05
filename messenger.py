@@ -18,42 +18,65 @@ server = {
         }
     ]
 }
+def ecran_accueil():
+    print('=== Messenger ===')
+    print('1. See users')
+    print('2. See channel')
+    print('x.Leave')
 
-print('=== Messenger ===')
-print('1. See users')
-print('2. See channel')
-print('x.Leave')
-print('n. create user')
-print('x. Main menu')
-print(' ')
+    print(' ')
 
-print(' ')
+def fonction_x():
+    print('Bye!')
+
+def fonction_user():
+    print('Select an option: 1')
+    print('User list')
+    print('--------')
+    n=len(server['users'])
+    for i in range(n):
+        print(i,'.',server['users'][i]["name"])
+    print('n. Create user')
+    print('x. Main menu')
+
+
+def fonction_channel():
+    for groupe in server['messages']:
+        print(groupe['name'])
+
+def fonction_add_user():
+    id=len(server['users'])
+    id=server['users'][-1]['id']+1
+    nom=input("donner un nom d'utilisateur")
+    server['users'].append({'id': id, 'name': nom})
+    print(server)
+    print(server['users'])
+
+def fonction_c():
+    nom_groupe=input("donner moi le nom du groupe")
+    membre=input('donner moi les gens membres du groupe')
+    L=membre.split(',')
+    server["channels"]
+
+ecran_accueil()
 
 
 choice = input('Select an option: ')
 while choice !='x':
     if choice == 'x':
-        print('Bye!')
+        fonction_x()
     elif choice == '1':
-        print('Select an option: 1')
-        print('User list')
-        print('--------')
-        for users in server['users']:
-            print(users['name'])
+        fonction_user()
+        choice=input('select an option')
+        while choice!='x':
+            if choice == 'n':
+                fonction_add_user()
+            choice=input('select an option')
     elif choice == '2':
-        for message in server['messages']:
-            print(message['content'])
-    elif choice =='n':
-        id=len(server['users'])
-        id=server['users'][-1]['id']+1
-        nom=input("donner un nom d'utilisateur")
-        server['users'].append({'id': id, 'name': nom})
-        print(server)
-        print(server['users'])
-    elif choice =='x.':
-        for key in server:
-            print(key)
-
+        fonction_channel()
+    elif choice =='x':
+        print('Bye') 
     else:
         input("taper une commande répertoriée")
     choice = input('Select an option: ')
+
