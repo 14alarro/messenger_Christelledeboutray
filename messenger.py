@@ -52,14 +52,24 @@ def fonction_add_user():
     print(server)
     print(server['users'])
 
-def fonction_c():
-    nom_groupe=input("donner moi le nom du groupe")
-    membre=input('donner moi les gens membres du groupe')
-    L=membre.split(',')
-    server["channels"]
 
 ecran_accueil()
 
+def fonction_groupe():
+    nom_groupe=input("donner moi le nom du groupe")
+    membre=input('donner moi les gens membres du groupe')
+    L=membre.split(',')
+    dico={}
+    dico['id']=server['channels'][-1]['id']+1
+    dico['name']=nom_groupe
+    L_members=[]
+    for members in L:
+        i=0
+        while server['users'][i]['name']!=members:
+            i=i+1
+        L_members.append(server['users'][i]['id'])
+    dico['members_ids']=L_members
+    server["channels"].append(dico)
 
 choice = input('Select an option: ')
 while choice !='x':
