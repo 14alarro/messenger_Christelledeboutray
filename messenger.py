@@ -1,5 +1,4 @@
 from datetime import datetime
-
 server = {
     'users': [
         {'id': 1, 'name': 'Alice'},
@@ -18,6 +17,16 @@ server = {
         }
     ]
 }
+
+import json
+with open('server.json','r') as f:
+    server=json.load(f)
+
+def modif():
+    with open('server.json', 'w') as f:
+        json.dump(server, f)
+
+
 def ecran_accueil():
     print('=== Messenger ===')
     print('1. See users')
@@ -42,7 +51,7 @@ def fonction_user():
 
 def fonction_channel():
     for groupe in server['messages']:
-        print(groupe['id'],groupe['name'])*
+        print(groupe['id'],groupe['name'])
     print("x. main menu")
 
 
@@ -56,6 +65,7 @@ def fonction_add_user():
     server['users'].append({'id': id, 'name': nom})
     print(server)
     print(server['users'])
+    modif()
 
 
 ecran_accueil()
@@ -88,6 +98,7 @@ def ajout_membre_groupe():
         j=j+1
     id=server['channels'][j]['id']
     server["channels"][j]['member_ids'].append(id)
+    modif()
     print(server)
 
 choice = input('Select an option: ')
@@ -100,8 +111,9 @@ while choice !='x':
         while choice!='x':
             if choice == 'n':
                 fonction_add_user()
+            choice=input('select an option')
         ecran_accueil()
-        choice=input('select an option')
+        #choice=input('select an option')
     elif choice == '2':
         fonction_channel()
     elif choice =='x':
@@ -109,4 +121,5 @@ while choice !='x':
     else:
         input("taper une commande répertoriée")
     choice = input('Select an option: ')
+
 
