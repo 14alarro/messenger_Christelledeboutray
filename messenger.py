@@ -50,9 +50,10 @@ def fonction_user():
 
 
 def fonction_channel():
-    for groupe in server['messages']:
+    for groupe in server['channels']:
         print(groupe['id'],groupe['name'])
     print("x. main menu")
+    print("n. ajouter un groupe")
 
 
 # max([mes['id'] for mess in server['messages]])+1
@@ -74,6 +75,7 @@ def fonction_groupe():
     nom_groupe=input("donner moi le nom du groupe")
     membre=input('donner moi les gens membres du groupe')
     L=membre.split(',')
+    L=[user.strip() for user in membre.split(',')]
     dico={}
     dico['id']=max([channels['id']for channels in server["channels"]])+1
     dico['name']=nom_groupe
@@ -85,6 +87,7 @@ def fonction_groupe():
         L_members.append(server['users'][i]['id'])
     dico['members_ids']=L_members
     server["channels"].append(dico)
+    modif()
 
 def ajout_membre_groupe():
     groupe=input('donner moi le nom du groupe')
@@ -116,6 +119,12 @@ while choice !='x':
         #choice=input('select an option')
     elif choice == '2':
         fonction_channel()
+        choice=input('select an option')
+        while choice!='x':
+            if choice == 'n':
+                fonction_groupe()
+            choice=input('select an option')
+        ecran_accueil()
     elif choice =='x':
         print('Bye') 
     else:
