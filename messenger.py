@@ -24,7 +24,7 @@ with open('server.json','r') as f:
 
 def modif():
     with open('server.json', 'w') as f:
-        json.dump(server, f)
+        json.dump(server, f,indent=10)
 
 
 def ecran_accueil():
