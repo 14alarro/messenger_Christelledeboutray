@@ -11,7 +11,7 @@ server = {
     'messages': [
         {
             'id': 1,
-            'reception_date': datetime.now(),
+            'reception_date': "2019-14-04",
             'sender_id': 1,
             'channel': 1,
             'content': 'Hi '
@@ -42,11 +42,14 @@ def fonction_user():
 
 def fonction_channel():
     for groupe in server['messages']:
-        print(groupe['name'])
+        print(groupe['id'],groupe['name'])*
+    print("x. main menu")
 
+
+# max([mes['id'] for mess in server['messages]])+1
 def fonction_add_user():
     id=len(server['users'])
-    id=server['users'][-1]['id']+1
+    id=max([user['id'] for user in server['users']])+1
     #il aurait été plus judicieux de prendre le maximum des identifiants de la liste 
     #id=max[ i for for in server['users']+1], structure comme ça
     nom=input("donner un nom d'utilisateur")
@@ -62,7 +65,7 @@ def fonction_groupe():
     membre=input('donner moi les gens membres du groupe')
     L=membre.split(',')
     dico={}
-    dico['id']=server['channels'][-1]['id']+1
+    dico['id']=max([channels['id']for channels in server["channels"]])+1
     dico['name']=nom_groupe
     L_members=[]
     for members in L:
@@ -72,6 +75,20 @@ def fonction_groupe():
         L_members.append(server['users'][i]['id'])
     dico['members_ids']=L_members
     server["channels"].append(dico)
+
+def ajout_membre_groupe():
+    groupe=input('donner moi le nom du groupe')
+    personne=input('donner moi le nom de la nouvelle personne')
+    i=0
+    while server['users'][i]['name']!=personne:
+        i=i+1
+    id=server['users'][i]['id']
+    j=0
+    while server['channels'][j]['name']!=groupe:
+        j=j+1
+    id=server['channels'][j]['id']
+    server["channels"][j]['member_ids'].append(id)
+    print(server)
 
 choice = input('Select an option: ')
 while choice !='x':
@@ -83,7 +100,8 @@ while choice !='x':
         while choice!='x':
             if choice == 'n':
                 fonction_add_user()
-            choice=input('select an option')
+        ecran_accueil()
+        choice=input('select an option')
     elif choice == '2':
         fonction_channel()
     elif choice =='x':
