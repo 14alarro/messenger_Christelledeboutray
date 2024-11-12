@@ -23,6 +23,7 @@ import json
 def ouverture_fichier():
     with open('server.json') as f:
         server=json.load(f)
+        return server
 
 ouverture_fichier()
 server=ouverture_fichier()
