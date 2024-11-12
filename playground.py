@@ -24,12 +24,6 @@ class User:
         self.id=id
 
 
-user=User(1,'Alice')
-
-
-
-
-print(user.name)
 
 L_users=[]
 for user in server['users']:
