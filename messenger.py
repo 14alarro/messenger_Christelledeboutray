@@ -18,9 +18,13 @@ server = {
     ]
 }
 
-import json
-with open('server.json','r') as f:
-    server=json.load(f)
+def ouverture_fichier():
+    import json
+    with open('server.json','r') as f:
+        server=json.load(f)
+
+ouverture_fichier()
+
 
 def modif():
     with open('server.json', 'w') as f:
