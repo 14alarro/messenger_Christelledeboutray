@@ -26,6 +26,8 @@ def ouverture_fichier():
         server=json.load(f)
 
 ouverture_fichier()
+server=ouverture_fichier()
+
 
 def modif():
     import json
@@ -65,10 +67,7 @@ def fonction_channel():
 
 # max([mes['id'] for mess in server['messages]])+1
 def fonction_add_user():
-    id=len(server['users'])
     id=max([user['id'] for user in server['users']])+1
-    #il aurait été plus judicieux de prendre le maximum des identifiants de la liste 
-    #id=max[ i for for in server['users']+1], structure comme ça
     nom=input("donner un nom d'utilisateur")
     server['users'].append({'id': id, 'name': nom})
     print(server)
