@@ -74,7 +74,7 @@ for message in server['messages']:
     reception_date=message['reception_date']
     channel=message['channel']
     content=message['content']
-    element=message(id,member_ids,name)
+    element=Message(id,member_ids,name,content)
     L_messages.append(element)
 
 
@@ -86,3 +86,6 @@ class Server:
         self.messages=L_messages
 
 server=Server(L_users,L_channels,L_messages)
+
+
+
