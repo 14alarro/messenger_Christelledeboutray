@@ -21,6 +21,71 @@ server = {
 
 import json
 
+class User:
+    def __init__(self,id:int, name:str):
+        self.name=name
+        self.id=id
+
+
+
+L_users=[]
+for user in server['users']:
+    id=user['id']
+    name=user['name']
+    element=User(id,user)
+    L_users.append(element)
+
+
+
+class Server:
+    def __init__(self,L_users,L_channels,L_messages):
+        self.users=L_users
+        self.channels=L_channels
+        self.messages=L_messages
+
+class Channel:
+    def __init__(self,id:int,member_ids:list,name:str):
+        self.id=id
+        self.name=name
+        self.member_ids=member_ids
+
+L_channels=[]
+for channel in server['channels']:
+    id=channel['id']
+    name=channel['name']
+    member_ids=channel['member_ids']
+    element=Channel(id,member_ids,name)
+    L_users.append(element)
+
+
+class Message:
+    def __init__(self,id:int,reception_date:str,channel:int,content):
+        self.id=id
+        self.reception_date=reception_date
+        self.channel=channel
+        self.content=channel
+
+L_messages=[]
+for message in server['messages']:
+    id=message['id']
+    reception_date=message['reception_date']
+    channel=message['channel']
+    content=message['content']
+    element=Message(id,member_ids,name,content)
+    L_messages.append(element)
+
+
+
+class Server:
+    def __init__(self,L_users,L_channels,L_messages):
+        self.users=L_users
+        self.channels=L_channels
+        self.messages=L_messages
+
+server=Server(L_users,L_channels,L_messages)
+
+
+
 def ouverture_fichier():
     with open('server.json') as f:
         server=json.load(f)
@@ -49,9 +114,8 @@ def fonction_user():
     print('Select an option: 1')
     print('User list')
     print('--------')
-    n=len(server['users'])
-    for user in server["users"]:
-        print(user['name'])
+    for user in server.users:
+        print(user.name)
     #for i in range(n):
         #print(i,'.',server['users'][i]["name"])
     print('n. Create user')
@@ -59,19 +123,19 @@ def fonction_user():
 
 
 def fonction_channel():
-    for groupe in server['channels']:
-        print(groupe['id'],groupe['name'])
+    for groupe in server.channels:
+        print(groupe.id,groupe.name)
     print("x. main menu")
     print("n. ajouter un groupe")
 
 
 # max([mes['id'] for mess in server['messages]])+1
 def fonction_add_user():
-    id=max([user['id'] for user in server['users']])+1
+    id=max([user.id for user in server.users])+1
     nom=input("donner un nom d'utilisateur")
-    server['users'].append({'id': id, 'name': nom})
+    server.users.append({'id': id, 'name': nom})
     print(server)
-    print(server['users'])
+    print(server.users)
     modif()
 
 
@@ -83,7 +147,7 @@ def fonction_groupe():
     L=membre.split(',')
     L=[user.strip() for user in membre.split(',')]
     dico={}
-    dico['id']=max([channels['id']for channels in server["channels"]])+1
+    dico['id']=max([channel.id for channel in server.channels])+1
     dico['name']=nom_groupe
     L_members=[]
     for members in L:
