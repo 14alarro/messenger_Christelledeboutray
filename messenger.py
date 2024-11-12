@@ -20,6 +20,15 @@ server = {
 
 
 import json
+def ouverture_fichier():
+    with open('server.json') as f:
+        server=json.load(f)
+
+ouverture_fichier()
+server=ouverture_fichier()
+
+print(server)
+
 
 class User:
     def __init__(self,id:int, name:str):
@@ -86,12 +95,6 @@ server=Server(L_users,L_channels,L_messages)
 
 
 
-def ouverture_fichier():
-    with open('server.json') as f:
-        server=json.load(f)
-
-ouverture_fichier()
-server=ouverture_fichier()
 
 
 def modif():
