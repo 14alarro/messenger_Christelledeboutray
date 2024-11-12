@@ -18,15 +18,17 @@ server = {
     ]
 }
 
+
+import json
+
 def ouverture_fichier():
-    import json
-    with open('server.json','r') as f:
+    with open('server.json') as f:
         server=json.load(f)
 
 ouverture_fichier()
 
-
 def modif():
+    import json
     with open('server.json', 'w') as f:
         json.dump(server, f,indent=10)
 
@@ -36,7 +38,6 @@ def ecran_accueil():
     print('1. See users')
     print('2. See channel')
     print('x.Leave')
-
     print(' ')
 
 def fonction_x():
@@ -47,8 +48,10 @@ def fonction_user():
     print('User list')
     print('--------')
     n=len(server['users'])
-    for i in range(n):
-        print(i,'.',server['users'][i]["name"])
+    for user in server["users"]:
+        print(user['name'])
+    #for i in range(n):
+        #print(i,'.',server['users'][i]["name"])
     print('n. Create user')
     print('x. Main menu')
 
