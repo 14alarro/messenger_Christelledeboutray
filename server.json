@@ -10,31 +10,7 @@
                     },
                     {
                               "id": 3,
-                              "name": "test"
-                    },
-                    {
-                              "id": 4,
-                              "name": "test2"
-                    },
-                    {
-                              "id": 5,
-                              "name": "test4"
-                    },
-                    {
-                              "id": 6,
                               "name": "christelle"
-                    },
-                    {
-                              "id": 7,
-                              "name": "testtt"
-                    },
-                    {
-                              "id": 8,
-                              "name": "cht"
-                    },
-                    {
-                              "id": 9,
-                              "name": "\u001b[A\u001b[B\u001b[A\u001b[B\u001b[Bc"
                     }
           ],
           "channels": [
@@ -45,20 +21,12 @@
                                         1,
                                         2
                               ]
-                    },
-                    {
-                              "id": 2,
-                              "name": "g",
-                              "members_ids": [
-                                        1,
-                                        2
-                              ]
                     }
           ],
           "messages": [
                     {
                               "id": 1,
-                              "reception_date": "11-12-2024",
+                              "reception_date": "2019-14-04",
                               "sender_id": 1,
                               "channel": 1,
                               "content": "Hi "
