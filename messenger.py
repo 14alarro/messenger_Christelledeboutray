@@ -144,14 +144,6 @@ for message in server['messages']:
     element=Message(id,member_ids,name,content)
     L_messages.append(element)
 
-
-
-class Server:
-    def __init__(self,L_users,L_channels,L_messages):
-        self.users=L_users
-        self.channels=L_channels
-        self.messages=L_messages
-
 server=Server(L_users,L_channels,L_messages)
 
 #il faudrait créer une méthode qui soit associée à cette fonction
