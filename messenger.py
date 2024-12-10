@@ -31,10 +31,16 @@ server=ouverture_fichier()
 print(server)
 
 
+
+
 class User:
     def __init__(self,id:int, name:str):
         self.name=name
         self.id=id
+    def __repr__(self):
+        return (f"User(name={self.name}, identifiant={self.id})")
+    def to_dict(self):
+        return{"id":self.id,"name":self.name}
 
 
 
@@ -52,12 +58,18 @@ class Server:
         self.users=L_users
         self.channels=L_channels
         self.messages=L_messages
+    def __repr__(self):
+        return(f"Server(user={self.user},channels={self.channels}, messages={self.messages}")
+
+
 
 class Channel:
     def __init__(self,id:int,member_ids:list,name:str):
         self.id=id
         self.name=name
         self.member_ids=member_ids
+    def to_dict(self):
+        return {'id':self.id,'name':self.name,'member_ids':self.member_ids}
 
 L_channels=[]
 for channel in server['channels']:
@@ -65,7 +77,7 @@ for channel in server['channels']:
     name=channel['name']
     member_ids=channel['member_ids']
     element=Channel(id,member_ids,name)
-    L_users.append(element)
+    L_channels.append(element)
 
 
 class Message:
@@ -73,7 +85,11 @@ class Message:
         self.id=id
         self.reception_date=reception_date
         self.channel=channel
-        self.content=channel
+        self.content=content
+    def __repr__(self):
+        return(f"Message(identifiant={self.id}), channel={self.channel},content={self.content} ")
+    def to_dict(self):
+        return {'id':self.id, 'reception_date':self.reception_date,'channel':self.channel,'content':self.content}
 
 L_messages=[]
 for message in server['messages']:
@@ -94,14 +110,26 @@ class Server:
 
 server=Server(L_users,L_channels,L_messages)
 
+#il faudrait créer une méthode qui soit associée à cette fonction
 
-
+def conversion(server):
+    serveur={}
+    #server.users contient une somme d'objets 
+    L_users=[user.to_dict() for user in server.users]
+    serveur['users']=L_users
+    L_channels=[channel.to_dict() for channel in server.channels]
+    serveur["channels"]=L_channels
+    L_messages=[message.to_dict() for message in server.messages]
+    serveur["messages"]=L_messages
+    return (serveur)
 
 
 def modif():
     import json
+    serveur=conversion(server)
+    print(serveur)
     with open('server.json', 'w') as f:
-        json.dump(server, f,indent=10)
+        json.dump(serveur, f,indent=10)
 
 
 def ecran_accueil():
@@ -137,9 +165,11 @@ def fonction_channel():
 def fonction_add_user():
     id=max([user.id for user in server.users])+1
     nom=input("donner un nom d'utilisateur")
-    server.users.append({'id': id, 'name': nom})
-    print(server)
-    print(server.users)
+    #modifier ici, mettre classe
+    new_user=User(id,nom)
+    server.users.append(new_user)
+    #print(server)
+    #print(server.users)
     modif()
 
 
@@ -204,5 +234,10 @@ while choice !='x':
     else:
         input("taper une commande répertoriée")
     choice = input('Select an option: ')
+
+
+
+
+#il faut écrire une fonction qui passe d'une classe à un dictionnaire afin de faire le json.dump
 
 
