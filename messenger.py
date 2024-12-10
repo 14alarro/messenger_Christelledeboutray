@@ -73,6 +73,34 @@ class Server:
         serveur["messages"]=L_messages
         with open('server.json', 'w') as f:
             json.dump(serveur, f,indent=10)
+    @classmethod
+    def load(cls):
+        with open('server.json') as f:
+            server=json.load(f)
+            L_messages=[]
+            for message in server['messages']:
+                id=message['id']
+                reception_date=message['reception_date']
+                channel=message['channel']
+                content=message['content']
+                element=Message(id,member_ids,name,content)
+                L_messages.append(element)
+            L_channels=[]
+            for channel in server['channels']:
+                id=channel['id']
+                name=channel['name']
+                member_ids=channel['member_ids']
+                element=Channel(id,member_ids,name)
+                L_channels.append(element)
+            L_users=[]
+        for user in server['users']:
+            id=user['id']
+            name=user['name']
+            element=User(id,user)
+            L_users.append(element)
+        return cls(L_users,L_channels,L_messages)
+
+
 
 
 
