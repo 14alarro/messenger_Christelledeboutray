@@ -126,17 +126,17 @@ def fonction_groupe():
     membre=input('donner moi les gens membres du groupe')
     L=membre.split(',')
     L=[user.strip() for user in membre.split(',')]
-    dico={}
-    dico['id']=max([channel.id for channel in server.channels])+1
-    dico['name']=nom_groupe
+
+    new_group_id = max([channel.id for channel in server.channels])+1
+
     L_members=[]
     for members in L:
         i=0
-        while server['users'][i]['name']!=members:
+        while server.users[i].name != members:
             i=i+1
-        L_members.append(server['users'][i]['id'])
-    dico['members_ids']=L_members
-    server["channels"].append(dico)
+        L_members.append(server.users[i].id)
+    new_group = Channel(new_group_id, L_members, nom_groupe)
+    server.channels.append(new_group)
     server.save()
 
 def ajout_membre_groupe():
