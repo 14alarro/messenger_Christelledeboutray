@@ -135,7 +135,7 @@ def fonction_groupe():
         L_members.append(server['users'][i]['id'])
     dico['members_ids']=L_members
     server["channels"].append(dico)
-    modif()
+    server.save()
 
 def ajout_membre_groupe():
     groupe=input('donner moi le nom du groupe')
@@ -149,8 +149,8 @@ def ajout_membre_groupe():
         j=j+1
     id=server['channels'][j]['id']
     server["channels"][j]['member_ids'].append(id)
-    modif()
     print(server)
+    server.save()
 
 choice = input('Select an option: ')
 while choice !='x':
