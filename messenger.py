@@ -1,15 +1,5 @@
 import json
 
-def ouverture_fichier():
-    with open('server.json') as f:
-        server=json.load(f)
-        return server
-
-ouverture_fichier()
-server=ouverture_fichier()
-
-print(server)
-
 class User:
     def __init__(self,id:int, name:str):
         self.name=name
@@ -83,16 +73,7 @@ class Server:
             L_users.append(element)
         return cls(L_users,L_channels,L_messages)
 
-
-server=Server(L_users,L_channels,L_messages)
-
-#il faudrait créer une méthode qui soit associée à cette fonction
-
-
-
-
-
-
+server = Server.load()
 
 def ecran_accueil():
     print('=== Messenger ===')
