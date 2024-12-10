@@ -29,7 +29,7 @@ class Message:
         return {'id':self.id, 'reception_date':self.reception_date,'channel':self.channel,'content':self.content}
 
 class Server:
-    def __init__(self,L_users,L_channels,L_messages):
+    def __init__(self, L_users: list[User], L_channels: list[Channel], L_messages: list[Message]):
         self.users=L_users
         self.channels=L_channels
         self.messages=L_messages
