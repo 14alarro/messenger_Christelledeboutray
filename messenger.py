@@ -34,7 +34,7 @@ class Server:
         self.channels=L_channels
         self.messages=L_messages
     def __repr__(self):
-        return(f"Server(user={self.user},channels={self.channels}, messages={self.messages}")
+        return(f"Server(users={self.users},channels={self.channels}, messages={self.messages}")
     def save(self):
         serveur={}
         #server.users contient une somme d'objets 
@@ -56,7 +56,7 @@ class Server:
                 reception_date=message['reception_date']
                 channel=message['channel']
                 content=message['content']
-                element=Message(id,member_ids,name,content)
+                element = Message(id, reception_date, channel, content)
                 L_messages.append(element)
             L_channels=[]
             for channel in server['channels']:
@@ -69,7 +69,7 @@ class Server:
         for user in server['users']:
             id=user['id']
             name=user['name']
-            element=User(id,user)
+            element = User(id, name)
             L_users.append(element)
         return cls(L_users,L_channels,L_messages)
 
