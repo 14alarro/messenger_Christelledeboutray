@@ -48,11 +48,11 @@ class Server:
     def save(self):
         serveur={}
         #server.users contient une somme d'objets 
-        L_users=[user.to_dict() for user in server.users]
+        L_users=[user.to_dict() for user in self.users]
         serveur['users']=L_users
-        L_channels=[channel.to_dict() for channel in server.channels]
+        L_channels=[channel.to_dict() for channel in self.channels]
         serveur["channels"]=L_channels
-        L_messages=[message.to_dict() for message in server.messages]
+        L_messages=[message.to_dict() for message in self.messages]
         serveur["messages"]=L_messages
         with open('server.json', 'w') as f:
             json.dump(serveur, f,indent=10)
