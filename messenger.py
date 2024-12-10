@@ -52,6 +52,8 @@ for user in server['users']:
     L_users.append(element)
 
 
+    
+import json
 
 class Server:
     def __init__(self,L_users,L_channels,L_messages):
@@ -60,6 +62,18 @@ class Server:
         self.messages=L_messages
     def __repr__(self):
         return(f"Server(user={self.user},channels={self.channels}, messages={self.messages}")
+    def save(self):
+        serveur={}
+        #server.users contient une somme d'objets 
+        L_users=[user.to_dict() for user in server.users]
+        serveur['users']=L_users
+        L_channels=[channel.to_dict() for channel in server.channels]
+        serveur["channels"]=L_channels
+        L_messages=[message.to_dict() for message in server.messages]
+        serveur["messages"]=L_messages
+        with open('server.json', 'w') as f:
+            json.dump(serveur, f,indent=10)
+
 
 
 
@@ -70,6 +84,8 @@ class Channel:
         self.member_ids=member_ids
     def to_dict(self):
         return {'id':self.id,'name':self.name,'member_ids':self.member_ids}
+
+
 
 L_channels=[]
 for channel in server['channels']:
@@ -112,24 +128,10 @@ server=Server(L_users,L_channels,L_messages)
 
 #il faudrait créer une méthode qui soit associée à cette fonction
 
-def conversion(server):
-    serveur={}
-    #server.users contient une somme d'objets 
-    L_users=[user.to_dict() for user in server.users]
-    serveur['users']=L_users
-    L_channels=[channel.to_dict() for channel in server.channels]
-    serveur["channels"]=L_channels
-    L_messages=[message.to_dict() for message in server.messages]
-    serveur["messages"]=L_messages
-    return (serveur)
 
 
-def modif():
-    import json
-    serveur=conversion(server)
-    print(serveur)
-    with open('server.json', 'w') as f:
-        json.dump(serveur, f,indent=10)
+
+
 
 
 def ecran_accueil():
@@ -170,7 +172,7 @@ def fonction_add_user():
     server.users.append(new_user)
     #print(server)
     #print(server.users)
-    modif()
+    server.save()
 
 
 ecran_accueil()
