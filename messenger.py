@@ -1,4 +1,5 @@
-from datetime import datetime
+import json
+
 server = {
     'users': [
         {'id': 1, 'name': 'Alice'},
@@ -19,7 +20,6 @@ server = {
 }
 
 
-import json
 def ouverture_fichier():
     with open('server.json') as f:
         server=json.load(f)
@@ -57,8 +57,6 @@ class Message:
         return(f"Message(identifiant={self.id}), channel={self.channel},content={self.content} ")
     def to_dict(self):
         return {'id':self.id, 'reception_date':self.reception_date,'channel':self.channel,'content':self.content}
-
-import json
 
 class Server:
     def __init__(self,L_users,L_channels,L_messages):
