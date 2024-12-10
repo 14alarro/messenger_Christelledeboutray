@@ -18,15 +18,16 @@ class Channel:
         return {'id':self.id,'name':self.name,'member_ids':self.member_ids}
 
 class Message:
-    def __init__(self,id:int,reception_date:str,channel:int,content):
+    def __init__(self, id: int, reception_date: str, sender_id: int, channel: int, content: str):
         self.id=id
         self.reception_date=reception_date
+        self.sender_id = sender_id
         self.channel=channel
         self.content=content
     def __repr__(self):
         return(f"Message(identifiant={self.id}), channel={self.channel},content={self.content} ")
     def to_dict(self):
-        return {'id':self.id, 'reception_date':self.reception_date,'channel':self.channel,'content':self.content}
+        return {'id':self.id, 'reception_date':self.reception_date, 'sender_id': self.sender_id, 'channel':self.channel,'content':self.content}
 
 class Server:
     def __init__(self, L_users: list[User], L_channels: list[Channel], L_messages: list[Message]):
@@ -55,9 +56,10 @@ class Server:
             for message in server['messages']:
                 id=message['id']
                 reception_date=message['reception_date']
+                sender_id = message['sender_id']
                 channel=message['channel']
                 content=message['content']
-                element = Message(id, reception_date, channel, content)
+                element = Message(id, reception_date, sender_id, channel, content)
                 L_messages.append(element)
             L_channels=[]
             for channel in server['channels']:
