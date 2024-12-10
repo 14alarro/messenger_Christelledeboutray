@@ -36,6 +36,7 @@ class Server:
     def __repr__(self):
         return(f"Server(users={self.users},channels={self.channels}, messages={self.messages}")
     def save(self):
+        # fonction qui passe d'une classe à un dictionnaire afin de faire le json.dump
         serveur={}
         #server.users contient une somme d'objets 
         L_users=[user.to_dict() for user in self.users]
@@ -177,10 +178,3 @@ while choice !='x':
     else:
         input("taper une commande répertoriée")
     choice = input('Select an option: ')
-
-
-
-
-#il faut écrire une fonction qui passe d'une classe à un dictionnaire afin de faire le json.dump
-
-
