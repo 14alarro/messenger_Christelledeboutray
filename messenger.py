@@ -42,17 +42,6 @@ class User:
     def to_dict(self):
         return{"id":self.id,"name":self.name}
 
-
-
-L_users=[]
-for user in server['users']:
-    id=user['id']
-    name=user['name']
-    element=User(id,user)
-    L_users.append(element)
-
-
-    
 import json
 
 class Server:
@@ -113,17 +102,6 @@ class Channel:
     def to_dict(self):
         return {'id':self.id,'name':self.name,'member_ids':self.member_ids}
 
-
-
-L_channels=[]
-for channel in server['channels']:
-    id=channel['id']
-    name=channel['name']
-    member_ids=channel['member_ids']
-    element=Channel(id,member_ids,name)
-    L_channels.append(element)
-
-
 class Message:
     def __init__(self,id:int,reception_date:str,channel:int,content):
         self.id=id
@@ -134,15 +112,6 @@ class Message:
         return(f"Message(identifiant={self.id}), channel={self.channel},content={self.content} ")
     def to_dict(self):
         return {'id':self.id, 'reception_date':self.reception_date,'channel':self.channel,'content':self.content}
-
-L_messages=[]
-for message in server['messages']:
-    id=message['id']
-    reception_date=message['reception_date']
-    channel=message['channel']
-    content=message['content']
-    element=Message(id,member_ids,name,content)
-    L_messages.append(element)
 
 server=Server(L_users,L_channels,L_messages)
 
