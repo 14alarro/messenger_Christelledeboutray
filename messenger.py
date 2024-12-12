@@ -93,7 +93,9 @@ def fonction_user():
     print('User list')
     print('--------')
     for user in server.users:
+        print("le nom est")
         print(user.name)
+    
     #for i in range(n):
         #print(i,'.',server['users'][i]["name"])
     print('n. Create user')
@@ -114,12 +116,10 @@ def fonction_add_user():
     #modifier ici, mettre classe
     new_user=User(id,nom)
     server.users.append(new_user)
-    #print(server)
-    #print(server.users)
     server.save()
 
 
-ecran_accueil()
+
 
 def fonction_groupe():
     nom_groupe=input("donner moi le nom du groupe")
@@ -139,26 +139,56 @@ def fonction_groupe():
     server.channels.append(new_group)
     server.save()
 
+def fonction_add_user():
+    id=max([user.id for user in server.users])+1
+    nom=input("donner un nom d'utilisateur")
+    #modifier ici, mettre classe
+    new_user=User(id,nom)
+    server.users.append(new_user)
+    server.save()
+
+
+#server.users est une liste de classes objets 
+
+#class Channel:
+    def __init__(self,id:int,member_ids:list,name:str):
+        self.id=id
+        self.name=name
+        self.member_ids=member_ids
+    def to_dict(self):
+        return {'id':self.id,'name':self.name,'member_ids':self.member_ids}
+
 def ajout_membre_groupe():
     groupe=input('donner moi le nom du groupe')
     personne=input('donner moi le nom de la nouvelle personne')
+    L_users=server.users
     i=0
-    while server['users'][i]['name']!=personne:
+    while L_users[i].id!=personne:
         i=i+1
-    id=server['users'][i]['id']
+    if i==(len(L_users)+1):
+        print("cette personne n'existe pas")
+    else:
+        member_ids=L_users[i].id  
     j=0
-    while server['channels'][j]['name']!=groupe:
+    L_channels=server.channels
+    #ajouter une fonctionnalité de manière à avoir un message 
+    while L_channels[j].name!=groupe:
         j=j+1
-    id=server['channels'][j]['id']
-    server["channels"][j]['member_ids'].append(id)
-    print(server)
+    if j==(len(L_channels)+1):
+        print("ce groupe n'existe pas")
+    else:
+        channel=L_channels[j]
+        channel.member_ids.append(member_ids)
     server.save()
 
+
+ecran_accueil()
 choice = input('Select an option: ')
 while choice !='x':
     if choice == 'x':
         fonction_x()
     elif choice == '1':
+        print("execution fonction user")
         fonction_user()
         choice=input('select an option')
         while choice!='x':
