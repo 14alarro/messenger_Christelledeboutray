@@ -107,6 +107,7 @@ def fonction_channel():
         print(groupe.id,groupe.name)
     print("x. main menu")
     print("n. ajouter un groupe")
+    print('u. ajouter un utilisateur')
 
 
 # max([mes['id'] for mess in server['messages]])+1
@@ -163,9 +164,10 @@ def ajout_membre_groupe():
     personne=input('donner moi le nom de la nouvelle personne')
     L_users=server.users
     i=0
-    while L_users[i].id!=personne:
+    while L_users[i].name!=personne and i<len(L_users):
+        print(L_users[i].name)
         i=i+1
-    if i==(len(L_users)+1):
+    if i==(len(L_users)):
         print("cette personne n'existe pas")
     else:
         member_ids=L_users[i].id  
@@ -203,6 +205,8 @@ while choice !='x':
         while choice!='x':
             if choice == 'n':
                 fonction_groupe()
+            if choice=='u':
+                ajout_membre_groupe()
             choice=input('select an option')
         ecran_accueil()
     elif choice =='x':
