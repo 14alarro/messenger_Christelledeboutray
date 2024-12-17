@@ -1,3 +1,9 @@
+import argparse
+parser=argparse.ArgumentParser(description="mise en entrée de paramètres json")
+parser.add_argument("--server", "-s", help="donne le chemin d'accès vers le fichier json")
+pars=parser.parse_args()
+nom_fichier_json=parser.server
+
 import json
 
 class User:
@@ -151,7 +157,7 @@ def fonction_add_user():
 
 #server.users est une liste de classes objets 
 
-#class Channel:
+class Channel:
     def __init__(self,id:int,member_ids:list,name:str):
         self.id=id
         self.name=name
