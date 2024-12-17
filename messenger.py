@@ -1,6 +1,11 @@
 import json
+import argparse
 
-# Test d'ajout pour pull request
+parser = argparse.ArgumentParser()
+parser.add_argument('--server','-s', help='enter json path')
+args = parser.parse_args()
+print(f'server json : {args.server}')
+
 
 
 class User:
