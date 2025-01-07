@@ -1,5 +1,7 @@
-import jason as js
+import json 
+from model import Message, Channel,User
 
+# faire ça partout
 
 class Server:
     def __init__(self,SERVER_FILE_NAME):
@@ -48,4 +50,31 @@ class Server:
     def load(cls):
         with open('server.json') as f:
             server=json.load(f)
-            return cls(server)
+            return cls(server)   
+    def get_users(self):
+        L_users=[user.to_dict() for user in self.users]
+        return(L_users)
+    def get_messages(self):
+        L_messages=[message.to_dict() for message in self.messages]
+        return (L_messages)
+    def get_channels(self):
+        L_channels=[channel.to_dict() for channel in self.channels]
+        print(L_channels)
+
+
+
+
+        
+
+
+
+
+#créer une deuxième version, faire un appel réseau 
+# il faut que l'on utilise les planches 
+
+
+class RemoteServer:
+    def __init__(self,):
+    
+    def get_channels(self):
+        
