@@ -4,13 +4,7 @@
 #pars=parser.parse_args()
 #nom_fichier_json=parser.server
 
-import json
-import argparse
 
-#parser = argparse.ArgumentParser()
-#parser.add_argument('--server','-s', help='enter json path')
-#args = parser.parse_args()
-#print(f'server json : {args.server}')
 
 
 class User:
@@ -111,10 +105,10 @@ class Channel:
         return {'id':self.id,'name':self.name,'member_ids':self.member_ids}
 
 class Client:
-    def __init__(Server,self):
-        self.server=Server
-    def __repr__():
-        print(f"Client(server={Client.server})")
+    def __init__(self, server):
+        self.server=server
+    def __repr__(self):
+        print(f"Client(server={self.server})")
     @ staticmethod
     def welcome_screen():
         def ecran_accueil():
