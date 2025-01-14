@@ -7,14 +7,20 @@ import json
 
 class RemoteServer:
     def __init__(self,url):
-        self.server=requests.get(url)
         self.url=url
     def get_users(self):
-        response=self.server.json()
+        print("on lance la fonction get users")
+        reponse=requests.get(self.url)
+        L=reponse.json()
         L_users=[]
-        for user in response:
+        for user in L:
             L_users.append(user["name"])
         return  L_users
-    def create_users(self):
-        #resquest.post )
+    def add_users(self,nom):
+        print("je voulais ajouter un utilisateur")
+        requests.post(f"{self.url}/create",json={"name": nom} )
     
+
+
+response=requests.get("https://groupe5-python-mines.fr/users")
+print(response.json())
