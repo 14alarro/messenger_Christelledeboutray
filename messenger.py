@@ -4,8 +4,29 @@
 #pars=parser.parse_args()
 #nom_fichier_json=parser.server
 
+from argparse import ArgumentParser
 
+from client import Client
+from localserver import LocalServer
+from remoteserver import RemoteServer
+from server import Server
 
+argument_parser=ArgumentParser()
+argument_parser.add_argument('-f','--filename')
+argument_parser.add_argument('-u','--url')
+argument_parser.add_argument('-p','--portail',action='store_true')
+arguments=argument_parser.parse_args()
+server:Server
+if arguments.filename is not None:
+    server=LocalServer(arguments.filename)
+elif arguments.url is not None:
+    server=RemoteServer(arguments.url)
+else:
+    print('Error: -f or -u should be set')
+    exit(-1)
+
+client=Client(server)
+client.welcome_screen()
 
 class User:
     def __init__(self,id:int, name:str):
@@ -36,6 +57,7 @@ class Message:
     def to_dict(self):
         return {'id':self.id, 'reception_date':self.reception_date, 'sender_id': self.sender_id, 'channel':self.channel,'content':self.content}
 
+import json
 class Server:
     def __init__(self,SERVER_FILE_NAME):
         with open('server.json') as f:
@@ -213,11 +235,11 @@ class Client:
 
 
 
-SERVER_FILE_NAME = 'server.json'
-server = Server(SERVER_FILE_NAME)
-server.load()
-client = Client(server)
-client.welcome_screen()
+#SERVER_FILE_NAME = 'server.json'
+#server = Server(SERVER_FILE_NAME)
+#server.load()
+#client = Client(server)
+#client.welcome_screen()
 
 
 
