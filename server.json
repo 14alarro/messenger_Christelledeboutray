@@ -10,7 +10,7 @@
                     },
                     {
                               "id": 3,
-                              "name": "christelle"
+                              "name": "marie"
                     }
           ],
           "channels": [
@@ -19,7 +19,8 @@
                               "name": "Town square",
                               "member_ids": [
                                         1,
-                                        2
+                                        2,
+                                        1
                               ]
                     }
           ],
