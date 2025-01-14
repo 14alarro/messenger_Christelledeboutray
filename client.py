@@ -1,12 +1,14 @@
 
 from model import User
+#méthode post 
+
 
 class Client:
     def __init__(self, server):
         self.server=server
     def __repr__(self):
         print(f"Client(server={self.server})")
-
+    @staticmethod
     def ecran_accueil():
         print('=== Messenger ===')
         print('1. See users')
@@ -21,10 +23,8 @@ class Client:
         print('Select an option: 1')
         print('User list')
         print('--------')
-        for user in self.server.users:
-            print("le nom est")
-            print(user.name)
-        
+        server=self.server
+        print(server.get_users()) 
         #for i in range(n):
             #print(i,'.',server['users'][i]["name"])
         print('n. Create user')
@@ -40,13 +40,7 @@ class Client:
 
 
     # max([mes['id'] for mess in server['messages]])+1
-    def fonction_add_user(self):
-        id=max([user.id for user in server.users])+1
-        nom=input("donner un nom d'utilisateur")
-        #modifier ici, mettre classe
-        new_user=User(id,nom)
-        self.server.users.append(new_user)
-        self.server.save()
+
 
     def welcome_screen(self):
         self.ecran_accueil()
@@ -60,7 +54,9 @@ class Client:
                 choice=input('select an option')
                 while choice!='x':
                     if choice == 'n':
-                        self.fonction_add_user()
+                        nom=input("donne moi le nom de l'utilisateur que tu veux créer")
+                        server=self.server
+                        server.add_users(nom)
                     choice=input('select an option')
                 self.ecran_accueil()
                 #choice=input('select an option')
