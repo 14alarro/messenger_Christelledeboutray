@@ -5,7 +5,7 @@ from model import Message, Channel,User
 
 class LocalServer:
     def __init__(self,LocalServer_FILE_NAME):
-        with open('LocalServer.json') as f:
+        with open(LocalServer_FILE_NAME) as f:
             LocalServer=json.load(f)
             L_messages=[]
             for message in LocalServer['messages']:
@@ -34,7 +34,6 @@ class LocalServer:
             self.messages=L_messages
     def __repr__(self):
         return(f"LocalServer(users={self.users},channels={self.channels}, messages={self.messages}")
-    @override
     def save(self):
         # fonction qui passe d'une classe à un dictionnaire afin de faire le json.dump
         serveur={}
@@ -46,22 +45,13 @@ class LocalServer:
         L_messages=[message.to_dict() for message in self.messages]
         serveur["messages"]=L_messages
         with open('LocalServer.json', 'w') as f:
-            json.dump(serveur, f,indent=10)
-    @override
-    @classmethod
-    def load(cls):
-        with open('LocalServer.json') as f:
-            LocalServer=json.load(f)
-            return cls(LocalServer)
-    @override   
+            json.dump(serveur, f,indent=10) 
     def get_users(self):
         L_users=[user.to_dict() for user in self.users]
         return(L_users)
-    @override
     def get_messages(self):
         L_messages=[message.to_dict() for message in self.messages]
         return (L_messages)
-    @override
     def get_channels(self):
         L_channels=[channel.to_dict() for channel in self.channels]
         print(L_channels)
