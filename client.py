@@ -1,5 +1,5 @@
 
-
+from model import User
 
 class Client:
     def __init__(self, server):
@@ -8,6 +8,7 @@ class Client:
         print(f"Client(server={self.server})")
     def welcome_screen(self):
         server=self.server
+        ecran_accueil()
         def ecran_accueil():
             print('=== Messenger ===')
             print('1. See users')
