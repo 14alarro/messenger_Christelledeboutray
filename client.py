@@ -6,8 +6,7 @@ class Client:
         self.server=server
     def __repr__(self):
         print(f"Client(server={self.server})")
-    def welcome_screen(self):
-        server=self.server
+
     def ecran_accueil():
         print('=== Messenger ===')
         print('1. See users')
@@ -48,4 +47,38 @@ class Client:
         new_user=User(id,nom)
         self.server.users.append(new_user)
         self.server.save()
+
+    def welcome_screen(self):
+        self.ecran_accueil()
+        choice = input('Select an option: ')
+        while choice !='x':
+            if choice == 'x':
+                self.fonction_x()
+            elif choice == '1':
+                print("execution fonction user")
+                self.fonction_user()
+                choice=input('select an option')
+                while choice!='x':
+                    if choice == 'n':
+                        self.fonction_add_user()
+                    choice=input('select an option')
+                self.ecran_accueil()
+                #choice=input('select an option')
+            elif choice == '2':
+                self.fonction_channel()
+                choice=input('select an option')
+                while choice!='x':
+                    if choice == 'n':
+                        self.fonction_groupe()
+                    if choice=='u':
+                        self.ajout_membre_groupe()
+                    choice=input('select an option')
+                self.ecran_accueil()
+            elif choice =='x':
+                print('Bye') 
+            else:
+                input("taper une commande répertoriée")
+            choice = input('Select an option: ')
+        
+
 
