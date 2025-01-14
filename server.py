@@ -1,4 +1,5 @@
-import json 
+import json
+from typing import List 
 from model import Message, Channel,User
 
 # faire ça partout
@@ -51,9 +52,8 @@ class Server:
         with open('server.json') as f:
             server=json.load(f)
             return cls(server)   
-    def get_users(self):
-        L_users=[user.to_dict() for user in self.users]
-        return(L_users)
+    def get_users(self)->List[User]:
+        return(self.users)
     def get_messages(self):
         L_messages=[message.to_dict() for message in self.messages]
         return (L_messages)
@@ -73,8 +73,4 @@ class Server:
 # il faut que l'on utilise les planches 
 
 
-class RemoteServer:
-    def __init__(self,):
-    
-    def get_channels(self):
         
