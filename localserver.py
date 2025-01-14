@@ -47,8 +47,10 @@ class LocalServer:
         with open('LocalServer.json', 'w') as f:
             json.dump(serveur, f,indent=10) 
     def get_users(self):
-        L_users=[user.to_dict() for user in self.users]
-        return(L_users)
+        L_users=[]
+        for user in self.users:
+            L_users.append(user.name)
+        return ("la liste est",L_users)
     def get_messages(self):
         L_messages=[message.to_dict() for message in self.messages]
         return (L_messages)
