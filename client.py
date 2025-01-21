@@ -78,3 +78,5 @@ class Client:
         
 
 
+#il faut ajouter des fonctions pour rejoindre un groupe, voir la liste des membres du groupe ...
+#il faut une fonction pour obtenir à partir d'un 
