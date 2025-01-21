@@ -57,4 +57,33 @@ class LocalServer:
     def get_channels(self):
         L_channels=[channel.to_dict() for channel in self.channels]
         print(L_channels)
+    def join_group(self,channel,user):
+        L_users=self.users
+        i=0
+        while L_users[i].name!=user and i<len(L_users):
+                print(L_users[i].name)
+                i=i+1
+        if i==(len(L_users)):
+                print("cette personne n'existe pas")
+        else:
+            member_id=L_users[i].id  
+        j=0
+        L_channels=self.channels
+        while L_channels[j].name!=channel:
+            j=j+1
+        if j==(len(L_channels)+1):
+            print("ce groupe n'existe pas")
+        else:
+            L_channels[j].member_ids.append(member_id)
+        self.save()
+    def post_messages(self,channel,post):
+        j=0
+        L_channels=self.channels
+        while L_channels[j].name!=channel:
+            j=j+1
+        if j==(len(L_channels)+1):
+            print("ce groupe n'existe pas")
+        else:
+            channel_id=L_channels[j].id
+        
 
