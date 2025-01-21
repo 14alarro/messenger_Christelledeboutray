@@ -40,9 +40,15 @@ class RemoteServer:
 
 
 #modifier les fonctions de manière à avoir les noms des groupes que l'on manipule
+#utiliser notion override et héritage
+# que fait @abstractmethod: documentation
+
+#server contient toutes les méthodes avec des pass
+#si on n'a pas une version de python qui est assez avancé pour mettre override, on ne va rien mettre
 
     
 
 
 #response=requests.get("https://groupe5-python-mines.fr/users")
 #print(response.json())
+
