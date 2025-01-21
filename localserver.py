@@ -75,15 +75,17 @@ class LocalServer:
             print("ce groupe n'existe pas")
         else:
             L_channels[j].member_ids.append(member_id)
+            self.channels=L_channels
         self.save()
     def post_messages(self,channel,post):
-        j=0
-        L_channels=self.channels
-        while L_channels[j].name!=channel:
+        i=0
+        L_messages=self.message
+        while L_messages[i].channel!=channel:
             j=j+1
-        if j==(len(L_channels)+1):
+        if j==(len(L_messages)+1):
             print("ce groupe n'existe pas")
         else:
-            channel_id=L_channels[j].id
+            L_messages
         
 
+#il ne faut pas oublier d'enregistrer le serveur local quand on fait des modifications
