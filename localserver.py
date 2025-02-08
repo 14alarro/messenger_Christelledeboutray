@@ -66,6 +66,7 @@ class LocalServer:
             id=input("donne moi une personne qui existe")
             self.get_users_name(self,id) 
         return(L_users[i].name)
+    
     def get_user_id(self,user):
         L_users=self.users
         n=len(L_users)
@@ -76,6 +77,7 @@ class LocalServer:
                 user=input("donne moi une personne qui existe")
                 self.get_users_id(self,user)
         return(L_users[i].id)
+    
     def get_channel_id(self,channel):
         L_channels=self.channels
         n=len(L_channels)
@@ -86,6 +88,7 @@ class LocalServer:
                 channel=input("donne moi un groupe qui existe")
                 self.get_users_id(self,channel)
         return(L_channels[i].id)
+    
     def get_users(self):
         L_users=[]
         for user in self.users:
