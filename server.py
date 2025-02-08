@@ -1,8 +1,11 @@
+# fichier python que je n'utilise pas du tout mais que j'ai gardé pour garder une trace et au cas où
+
+
 import json
 from typing import List 
 from model import Message, Channel,User
 
-# faire ça partout
+
 
 class Server:
     def __init__(self,SERVER_FILE_NAME):
@@ -128,15 +131,6 @@ class Server:
             return cls(server)
 
 
-## ici je charge mon serveur 
-#server = Server.load()
-
-
-
-
-
-
-#server.users est une liste de classes objets 
 
 class Channel:
     def __init__(self,id:int,member_ids:list,name:str):
