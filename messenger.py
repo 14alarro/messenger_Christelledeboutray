@@ -1,22 +1,18 @@
-#import argparse
-#parser=argparse.ArgumentParser(description="mise en entrée de paramètres json")
-#parser.add_argument("--server", "-s", help="donne le chemin d'accès vers le fichier json")
-#pars=parser.parse_args()
-#nom_fichier_json=parser.server
+
 
 from argparse import ArgumentParser
 
 from client import Client
 from localserver import LocalServer
 from remoteserver import RemoteServer
-#from server import Server
+
 
 argument_parser=ArgumentParser()
 argument_parser.add_argument('-f','--filename')
 argument_parser.add_argument('-u','--url')
 argument_parser.add_argument('-p','--portail',action='store_true')
 arguments=argument_parser.parse_args()
-#server:Server
+
 if arguments.filename is not None:
     server=LocalServer(arguments.filename)
 elif arguments.url is not None:
