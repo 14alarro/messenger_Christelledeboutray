@@ -29,8 +29,6 @@ class Client:
         print('--------')
         server=self.server
         print(server.get_users()) 
-        #for i in range(n):
-            #print(i,'.',server['users'][i]["name"])
         print('n. Create user')
         print('x. Main menu')
 
@@ -64,7 +62,6 @@ class Client:
                         server.add_users(nom)
                     choice=input('select an option')
                 self.ecran_accueil()
-                #choice=input('select an option')
             elif choice == '2':
                 self.fonction_channel()
                 choice=input('select an option')
