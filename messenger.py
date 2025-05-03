@@ -13,6 +13,7 @@ argument_parser.add_argument('-u','--url')
 argument_parser.add_argument('-p','--portail',action='store_true')
 arguments=argument_parser.parse_args()
 
+server: LocalServer | RemoteServer
 if arguments.filename is not None:
     server=LocalServer(arguments.filename)
 elif arguments.url is not None:

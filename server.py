@@ -284,6 +284,7 @@ def ajout_membre_groupe():
 
 
 # fonction add user qui était enregistrée dans la classe client
+# On peut la déplacer dans `LocalServer`
 def add_user(self):
         id=max([user.id for user in self.server.users])+1
         nom=input("donner un nom d'utilisateur")
